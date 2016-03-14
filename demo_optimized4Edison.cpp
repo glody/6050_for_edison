@@ -40,6 +40,9 @@ int FIFO_WRITE_MODE = 0x777 | S_IFIFO;
 #define BUF_FIFO_SIZE 32
 unsigned char BUF_FIFO[BUF_FIFO_SIZE];
 
+int accelWorldArray[3];
+float awr;
+
 enum TYPE_PIPE_CMD{
     PIPE_CMD_STOP = 0,
     PIPE_CMD_MOVE_FORWARD,
@@ -249,7 +252,8 @@ int main() {
 	//STEP-4: logic for tuning the two PWM dynamically!
 	//TODO: Implement the other 3 directions and stop function!
         ypr = mpu_head.dmpGetFirstYPRData();
-
+        awr = mpu_head.dmpGetAccelData(&accelWorldArray[3]);
+        printf("AccelWorldreturn: %f, A.x: %6d, A.y: %6d, A.z: %6d", awr,accelWorldArray[0],accelWorldArray[1],accelWorldArray[2]);
 	if (cmd_arg.enable == 1) {
             run_cmd = true; 
 	    continue;

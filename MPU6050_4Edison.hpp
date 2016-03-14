@@ -407,8 +407,9 @@ THE SOFTWARE.
 #define MPU6050_DMP_MEMORY_BANK_SIZE    256
 #define MPU6050_DMP_MEMORY_CHUNK_SIZE   16
 
-// note: DMP code memory blocks defined at end of header file
+extern int accelWorldArray[3];
 
+// note: DMP code memory blocks defined at end of header file
 class MPU6050 {
 
     public:
@@ -806,6 +807,9 @@ class MPU6050 {
             bool dmpStartDevice(uint8_t address, int xGyroOffset, int yGyroOffset, int zGyroOffset);
             bool dmpGetData();
             float dmpGetFirstYPRData();
+
+          //int accelWorldArray[3];
+            float dmpGetAccelData(int accelWorldArray[3]);
             Quaternion getDmpQuaternion();
             VectorInt16 getDmpAccel();
             VectorInt16 getDmpAccelReal();
